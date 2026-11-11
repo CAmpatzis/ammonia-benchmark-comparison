@@ -21,6 +21,20 @@ The project combines:
 
 The source analysis is organized in a set of notebooks and scripts that were used to generate the final benchmark tables, ranking summaries, and visual comparison outputs.
 
+## Benchmark summary
+
+The final benchmark comparison shows that the optimized BO policy remains the best-performing solution, while DreamerV3 achieves a strong model-based reinforcement-learning performance and PPO remains a competitive baseline.
+
+| Method | Normalized score | Relative interpretation |
+| --- | ---: | --- |
+| Bayesian optimization | 1.000 | Best overall operating point |
+| DreamerV3 | 0.98 | Strong model-based RL performance close to BO |
+| PPO | 0.37 | Competitive baseline, but materially below BO/DreamerV3 |
+
+The final benchmark summary and ranking outputs are stored in the `final/` folder and summarized in the benchmark overview figure below.
+
+![Benchmark overview](final/ammonia_benchmark_overview.png)
+
 ## Repository structure
 
 ```text
