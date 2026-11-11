@@ -1,0 +1,2 @@
+comparison,dreamer_label,dreamer_n,ppo_n,dreamer_mean,ppo_mean,mean_difference,probability_dreamer_exceeds_ppo,dreamer_mean_ci_low,dreamer_mean_ci_high,ppo_mean_ci_low,ppo_mean_ci_high,mannwhitney_u,p_value,test_note
+Best DreamerV3 run vs PPO terminal evaluation checkpoints (last 10),DreamerV3 96-100 adaptive,10,10,2591.9961181640624,987.7595736,1604.2365445640626,1.0,2573.183489379883,2613.8335955810544,980.5306459999999,995.1055145,100.0,8.632699844113368e-05,One-sided Mann-Whitney U on checkpoint-level evaluation rewards.

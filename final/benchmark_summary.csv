@@ -1,0 +1,4 @@
+method,reference,benchmark_reward,fraction_of_bo,gap_to_bo,optimistic_peak_reward,status,optimistic_peak_fraction_of_bo,effectively_tied_to_bo
+BO optimum,Bayesian Optimization,2712.651793,1.0,0.0,2712.651793,Reference optimum,1.0,True
+DreamerV3,DreamerV3 96-100 adaptive,2649.391357421875,0.9766794854609174,63.260435578125,2712.65771484375,Best RL evaluation result,1.0000021830460384,False
+PPO,ppo_haber_bosch_target98,1004.4432810000001,0.37028094928806077,1708.208512,2710.777602,Baseline RL result,0.9993090926727727,False

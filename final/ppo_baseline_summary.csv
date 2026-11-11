@@ -1,0 +1,2 @@
+best_eval_reward,best_eval_fraction_of_bo,terminal_mean_eval_reward_last_10,terminal_std_eval_reward_last_10,best_train_reward,best_train_fraction_of_bo
+1004.4432810000001,0.37028094928806077,987.7595736,11.65087463548986,2710.777602,0.9993090926727727

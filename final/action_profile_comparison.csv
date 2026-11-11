@@ -1,0 +1,8 @@
+parameter,bo_normalized_action,dreamer_best_normalized_action,absolute_delta
+Feed Ratio,-0.6127335418989747,-1.0,0.38726645810102533
+Stage 1 Pressure,0.08136597881754437,0.12985312938690186,0.048487150569357484
+Stage 2 Pressure,0.6577094487733803,0.5610982179641724,0.09661123080920797
+Loop Pressure,1.0,1.0,0.0
+Reactor Temperature,1.0,1.0,0.0
+Condenser Temperature,1.0,1.0,0.0
+Purge Fraction,-1.0,-1.0,0.0
