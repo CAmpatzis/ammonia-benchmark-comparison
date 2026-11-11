@@ -40,14 +40,20 @@ The source analysis is organized in a set of notebooks and scripts that were use
 │   ├── action_profile_comparison.csv
 │   ├── ppo_baseline_summary.csv
 │   └── statistical_summary.csv
-├── ammonia_bo_dreamerv3_ppo_publish_ready_comparison.ipynb
-├── ammonia_bo_summary.ipynb
-├── ammonia_dreamerv3_gap_closure.ipynb
-├── ammonia_dreamerv3_summary.ipynb
-├── ammonia_dreamerv3_target95_elite_replay.ipynb
-├── ammonia_dreamerv3_target95_elite_replay_close_gap.ipynb
-├── ammonia_dreamerv3_target96to100_adaptive.ipynb
-├── ammonia_ppo_target98.ipynb
+├── notebooks/
+│   ├── README.md
+│   ├── final/
+│   │   ├── benchmark_comparison.ipynb
+│   │   ├── bo_summary.ipynb
+│   │   ├── dreamerv3_summary.ipynb
+│   │   └── ppo_target98_summary.ipynb
+│   └── archive/
+│       ├── ammonia_dreamerv3_gap_closure.ipynb
+│       ├── ammonia_dreamerv3_target95_elite_replay.ipynb
+│       ├── ammonia_dreamerv3_target95_elite_replay_close_gap.ipynb
+│       └── ammonia_dreamerv3_target96to100_adaptive.ipynb
+├── docs/
+│   └── process_simulation.md
 ├── dreamerv3_haberbosch_helpers.py
 ├── env.py
 ├── optimize.py
@@ -62,19 +68,56 @@ The source analysis is organized in a set of notebooks and scripts that were use
 └── .venv/ (excluded from the repository)
 ```
 
-## Core analysis components
+## Final notebook set
 
-- `ammonia_bo_dreamerv3_ppo_publish_ready_comparison.ipynb`: primary benchmark analysis and final export notebook
-- `ammonia_bo_summary.ipynb`: BO-specific evaluation summary
-- `ammonia_dreamerv3_summary.ipynb`: DreamerV3 benchmark summary and diagnostic analysis
-- `ammonia_dreamerv3_gap_closure.ipynb`: gap-closure analysis and improvement tracking
-- `ammonia_dreamerv3_target95_elite_replay.ipynb`: elite replay target-95 analysis
-- `ammonia_dreamerv3_target96to100_adaptive.ipynb`: adaptive target optimization analysis
-- `ammonia_ppo_target98.ipynb`: PPO baseline and target-98 evaluation
-- `dreamerv3_haberbosch_helpers.py`: helper routines for benchmark processing and model analysis
-- `env.py`: simulation environment interface and reward logic
-- `optimize.py`: optimization and parameter-selection utilities
-- `DWSIM Simulation/Ammonia_RL.dwxmz`: process model used for the ammonia simulation environment
+The public-facing notebook collection is curated to the strongest result for each major section of the study:
+
+- `notebooks/final/benchmark_comparison.ipynb`: consolidated BO, DreamerV3, and PPO benchmark comparison
+- `notebooks/final/bo_summary.ipynb`: Bayesian optimization summary and operating-point evaluation
+- `notebooks/final/dreamerv3_summary.ipynb`: final DreamerV3 benchmark summary and diagnostic analysis
+- `notebooks/final/ppo_target98_summary.ipynb`: PPO target-98 benchmark summary and comparison
+
+The earlier exploratory and iteration notebooks are retained in `notebooks/archive/` for transparency and traceability, but the curated final set represents the publication-quality workflow.
+
+## Process simulation and DWSIM setup
+
+The process model is implemented in the DWSIM flowsheet file `DWSIM Simulation/Ammonia_RL.dwxmz`, with the control interface and simulation bridge defined in `env.py` and `.dwsim_support/dwsim_rosetta_bridge.py`. The project therefore combines a physics-based Haber–Bosch process model with a reinforcement-learning control interface that exposes the plant as a controllable optimization environment.
+
+```mermaid
+flowchart LR
+    A[Fresh feed] --> B[Compressor Stage 1]
+    B --> C[Compressor Stage 2]
+    C --> D[Compressor Stage 3]
+    D --> E[Preheater]
+    E --> F[Reactor]
+    F --> G[Condenser]
+    G --> H[NH3 product]
+    G --> I[Purge splitter]
+    I --> J[Recycle loop]
+    J --> D
+```
+
+The control policy acts on a seven-dimensional action vector that corresponds to process operating conditions in the DWSIM model:
+
+| Variable | Description | Bounds |
+| --- | --- | --- |
+| feed_ratio | fresh feed composition ratio | [0.5, 1.5] (scaled in the environment) |
+| stage1_bar | compressor stage 1 outlet pressure | [2.5, 3.5] bar |
+| stage2_bar | compressor stage 2 outlet pressure | [30, 80] bar |
+| loop_bar | recycle loop pressure | [60, 150] bar |
+| reactor_temp_c | reactor temperature setpoint | [150, 300] °C |
+| condenser_temp_c | condensation temperature | [350, 500] °C |
+| purge_fraction | purge split of the recycle stream | [0.01, 0.15] |
+
+The observation vector returned by the environment is constructed from the DWSIM result state and contains the following quantities:
+
+- NH3 product mass flow
+- total process power demand
+- reactor temperature
+- loop pressure
+- inert accumulation (methane + argon in recycle stream)
+
+The reward is computed as an economic objective derived from ammonia revenue minus electricity and thermal utility costs, with the bridge implementing the cost model in `.dwsim_support/dwsim_rosetta_bridge.py`.
 
 ## Final result bundle
 
