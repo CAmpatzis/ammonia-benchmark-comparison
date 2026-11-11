@@ -1,27 +1,27 @@
-# Ammonia Process Control Benchmark: Bayesian Optimization, DreamerV3, and PPO
+# Benchmarking Model-Based and Model-Free Reinforcement Learning for Ammonia Process Optimization
 
-A portfolio-style benchmark project comparing model-based and model-free reinforcement learning approaches for an ammonia process-control optimization task.
+## Abstract
 
-This repository packages the final publication-ready results from a benchmark study evaluating:
+This project evaluates the performance of Bayesian optimization (BO), DreamerV3, and proximal policy optimization (PPO) for ammonia process-control optimization in a simulated industrial environment. The objective is to compare learning-based and optimization-based control strategies in terms of operating-point quality, stability, and benchmark performance under realistic process constraints.
 
-- Bayesian Optimization (BO)
-- DreamerV3
-- PPO
+The analysis emphasizes reproducibility and presentation of final results in a format suitable for scientific communication and technical review. The repository includes the source analysis material, supporting simulation and optimization code, and the final publication-ready benchmark outputs.
 
-The analysis focuses on controller quality, stability, operating-point performance, and benchmark comparison across the evaluated methods.
+## Problem setting
 
-## Highlights
+The study considers a constrained ammonia process optimization problem in which the controller must balance process efficiency, operating limits, and system stability. The benchmark compares model-free reinforcement learning, model-based reinforcement learning, and a classical black-box optimization baseline to assess their relative effectiveness in a dynamic industrial control setting.
 
-- End-to-end benchmarking of learning-based controllers in a realistic ammonia process setting
-- Side-by-side comparison of algorithmic performance and operating characteristics
-- Final publication-ready summary tables, rankings, and benchmark figure exports
-- Clean repository layout designed for sharing with collaborators, stakeholders, and potential employers
+## Methodology
 
-## Benchmark overview
+The project combines:
 
-![Benchmark overview](final/ammonia_benchmark_overview.png)
+- a process simulation environment for ammonia control
+- optimization- and learning-based control strategies
+- benchmark evaluation over operating metrics and summary statistics
+- final figure and table export in a format suitable for publication and technical reporting
 
-## Repository contents
+The source analysis is organized in a set of notebooks and scripts that were used to generate the final benchmark tables, ranking summaries, and visual comparison outputs.
+
+## Repository structure
 
 ```text
 .
@@ -40,32 +40,55 @@ The analysis focuses on controller quality, stability, operating-point performan
 │   ├── action_profile_comparison.csv
 │   ├── ppo_baseline_summary.csv
 │   └── statistical_summary.csv
-└── .gitignore
+├── ammonia_bo_dreamerv3_ppo_publish_ready_comparison.ipynb
+├── ammonia_bo_summary.ipynb
+├── ammonia_dreamerv3_gap_closure.ipynb
+├── ammonia_dreamerv3_summary.ipynb
+├── ammonia_dreamerv3_target95_elite_replay.ipynb
+├── ammonia_dreamerv3_target95_elite_replay_close_gap.ipynb
+├── ammonia_dreamerv3_target96to100_adaptive.ipynb
+├── ammonia_ppo_target98.ipynb
+├── dreamerv3_haberbosch_helpers.py
+├── env.py
+├── optimize.py
+├── .dwsim_support/
+│   └── dwsim_rosetta_bridge.py
+├── DWSIM Simulation/
+│   └── Ammonia_RL.dwxmz
+├── third_party/
+│   └── dreamerv3_torch/
+├── artifacts/
+├── .gitignore
+└── .venv/ (excluded from the repository)
 ```
 
-## Final deliverables
+## Core analysis components
 
-The `final/` directory contains the publication-ready artifacts used for summarizing the study, including:
+- `ammonia_bo_dreamerv3_ppo_publish_ready_comparison.ipynb`: primary benchmark analysis and final export notebook
+- `ammonia_bo_summary.ipynb`: BO-specific evaluation summary
+- `ammonia_dreamerv3_summary.ipynb`: DreamerV3 benchmark summary and diagnostic analysis
+- `ammonia_dreamerv3_gap_closure.ipynb`: gap-closure analysis and improvement tracking
+- `ammonia_dreamerv3_target95_elite_replay.ipynb`: elite replay target-95 analysis
+- `ammonia_dreamerv3_target96to100_adaptive.ipynb`: adaptive target optimization analysis
+- `ammonia_ppo_target98.ipynb`: PPO baseline and target-98 evaluation
+- `dreamerv3_haberbosch_helpers.py`: helper routines for benchmark processing and model analysis
+- `env.py`: simulation environment interface and reward logic
+- `optimize.py`: optimization and parameter-selection utilities
+- `DWSIM Simulation/Ammonia_RL.dwxmz`: process model used for the ammonia simulation environment
 
-- benchmark summary tables and rankings
-- operating-point comparison outputs
-- action-profile comparison outputs
-- final benchmark overview figure in PNG and PDF formats
-- statistical summary exports for downstream analysis and reporting
+## Final result bundle
 
-## Project focus
+The `final/` directory contains the publication-ready outputs used to summarize the study, including:
 
-This work sits at the intersection of:
+- benchmark ranking and summary tables
+- operating-point comparisons
+- action-profile comparison data
+- benchmark overview plots in PNG and PDF formats
+- statistical summary exports for comparative evaluation
 
-- reinforcement learning
-- industrial process control
-- optimization under operating constraints
-- reproducible benchmarking and result packaging
+## Scientific relevance
 
-## Notes
-
-- The repository is structured to keep only the final, presentation-ready results in the public-facing project view.
-- Source notebooks and experimental run artifacts were intentionally excluded from the final repository presentation to maintain a clean, professional portfolio layout.
+This work contributes to the evaluation of reinforcement learning methods for industrial process optimization by benchmarking representative approaches under a shared environmental specification. The project is designed to support methodological comparison, reproducible analysis, and communication of outcomes in a form suitable for technical discussion and continuation into further research.
 
 ## License
 

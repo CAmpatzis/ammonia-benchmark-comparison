@@ -1,0 +1,2 @@
+label,best_eval_reward,best_eval_fraction_of_bo,terminal_mean_eval_reward_last_10,terminal_std_eval_reward_last_10,best_train_reward,best_train_fraction_of_bo
+DreamerV3 96-100 adaptive,2649.391357421875,0.9766794854609174,2591.9961181640624,33.01444416262444,2712.65771484375,1.0000021830460384

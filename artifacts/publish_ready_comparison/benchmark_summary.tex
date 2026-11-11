@@ -1,0 +1,9 @@
+\begin{tabular}{llrrrrlrr}
+\toprule
+method & reference & benchmark_reward & fraction_of_bo & gap_to_bo & optimistic_peak_reward & status & optimistic_peak_fraction_of_bo & effectively_tied_to_bo \\
+\midrule
+BO optimum & Bayesian Optimization & 2712.652 & 1.000 & 0.000 & 2712.652 & Reference optimum & 1.000 & True \\
+DreamerV3 & DreamerV3 96-100 adaptive & 2649.391 & 0.977 & 63.260 & 2712.658 & Best RL evaluation result & 1.000 & False \\
+PPO & ppo_haber_bosch_target98 & 1004.443 & 0.370 & 1708.209 & 2710.778 & Baseline RL result & 0.999 & False \\
+\bottomrule
+\end{tabular}

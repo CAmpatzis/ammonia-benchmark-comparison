@@ -1,6 +1,12 @@
-*
-!README.md
-!LICENSE
-!final/
-!final/**
-!.gitignore
+# Local environment and generated runtime artifacts
+__pycache__/
+*.py[cod]
+.venv/
+.venv311-rosetta/
+.mono-runtime-x64/
+.DS_Store
+Screenshot*.png
+file.png
+
+# Large training outputs are intentionally excluded from the public-facing repository
+runs/
